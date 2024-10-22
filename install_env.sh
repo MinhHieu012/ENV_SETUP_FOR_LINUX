@@ -59,13 +59,15 @@ while true; do
         print_title "=== Chọn môi trường cài đặt ==="
         echo "1. Cài đặt môi trường airdrop"
         echo "2. Cài đặt môi trường docker"
-        echo "3. Thoát"
+        echo "3. Cài đặt Git"
+        echo "4. Thoát"
     fi
     
-    read -p "$(print_info 'Nhập lựa chọn của bạn (1, 2 hoặc 3): ')" choice
+    read -p "$(print_info 'Nhập lựa chọn của bạn (1, 2, 3 hoặc 4): ')" choice
 
     if [[ "$choice" == "1" ]]; then
         countdown "airdrop" || continue
+        sudo su
         echo ""
         print_title "--------------- Bắt đầu cài đặt môi trường airdrop! ---------------"
         
@@ -112,6 +114,7 @@ while true; do
         break
 
     elif [[ "$choice" == "2" ]]; then
+        sudo su
         countdown "docker" || continue
 
         print_title "--------------- Bắt đầu cài đặt môi trường docker! ---------------"
@@ -171,6 +174,29 @@ while true; do
         break
 
     elif [[ "$choice" == "3" ]]; then
+        sudo su
+        countdown "git" || continue
+
+        print_title "--------------- Bắt đầu cài đặt Git! ---------------"
+        
+        # Cài đặt Git
+        countdown_title "Thêm PPA cho Git và cập nhật hệ thống" || continue
+        sudo add-apt-repository ppa:git-core/ppa -y
+        sudo apt update
+
+        countdown_title "Cài đặt Git" || continue
+        sudo apt install git -y
+
+        echo ""
+        print_info "--------------- Kết quả cài đặt Git! ---------------"
+        echo "Phiên bản Git: $(git --version)"
+        echo "----------------------------------------------------------------"
+
+        # Thông báo hoàn tất
+        print_info "--------------- Cài đặt Git hoàn tất! ---------------"
+        break
+
+    elif [[ "$choice" == "4" ]]; then
         print_info "Không có thay đổi nào được thực hiện!"
         exit 0
 
