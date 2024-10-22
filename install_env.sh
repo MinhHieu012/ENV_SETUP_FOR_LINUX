@@ -88,7 +88,7 @@ while true; do
         sudo python3.11 get-pip.py
 
         countdown_title "Cài đặt các gói Python cần thiết" || continue
-        sudo python3.11 -m pip install requests colorama aiocfscrape brotli aiohttp cloudscraper fake_useragent hydrogram tgcrypto smart-airdrop-claimer
+        sudo python3.11 -m pip install requests colorama aiocfscrape brotli aiohttp cloudscraper fake_useragent hydrogram tgcrypto smart-airdrop-claimer pycryptodome
 
         countdown_title "Cài đặt Node.js và các gói liên quan" || continue
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
