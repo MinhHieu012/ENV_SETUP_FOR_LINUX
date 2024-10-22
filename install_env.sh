@@ -67,7 +67,6 @@ while true; do
 
     if [[ "$choice" == "1" ]]; then
         countdown "airdrop" || continue
-        sudo su
         echo ""
         print_title "--------------- Bắt đầu cài đặt môi trường airdrop! ---------------"
         
@@ -114,7 +113,6 @@ while true; do
         break
 
     elif [[ "$choice" == "2" ]]; then
-        sudo su
         countdown "docker" || continue
 
         print_title "--------------- Bắt đầu cài đặt môi trường docker! ---------------"
@@ -174,7 +172,6 @@ while true; do
         break
 
     elif [[ "$choice" == "3" ]]; then
-        sudo su
         countdown "git" || continue
 
         print_title "--------------- Bắt đầu cài đặt Git! ---------------"
