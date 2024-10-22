@@ -61,7 +61,8 @@ while true; do
         echo "2. Cài đặt môi trường docker"
         echo "3. Cài đặt Git"
         echo "4. Cài đặt unikey (ibus-bamboo)"
-        echo "5. Thoát"
+        echo "5. Cài đặt MySQL (MySQL Workbench)"
+        echo "6. Thoát"
     fi
     
     read -p "$(print_info 'Nhập lựa chọn của bạn (1, 2, 3 hoặc 4): ')" choice
@@ -195,7 +196,7 @@ while true; do
         break
 
     elif [[ "$choice" == "4" ]]; then
-        countdown "git" || continue
+        countdown "unikey" || continue
 
         print_title "--------------- Bắt đầu cài đặt unikey (ibus-bamboo)! ---------------"
         
@@ -213,11 +214,40 @@ while true; do
         print_info "--------------- Cài đặt unikey (ibus-bamboo) hoàn tất! ---------------"
 
         # Note
-        print_info "Vào setting của keyboard phần Input Sources -> Add Input Sources... -> Chọn Vietnamese (Unikey)"
-        print_info "Nếu không có hoặc không hoạt động! Vui lòng logout và login lại! Hoặc restart lại máy!"
-        break    
+        echo ""
+        print_info "NOTE"
+        print_info "1. Vào setting của keyboard phần Input Sources -> Add Input Sources... -> Chọn Vietnamese (Unikey)"
+        print_info "2. Nếu không có hoặc không hoạt động! Vui lòng logout và login lại! Hoặc restart lại máy!"
+        break  
 
     elif [[ "$choice" == "5" ]]; then
+        countdown "MySQL" || continue
+
+        print_title "--------------- Bắt đầu cài đặt MySQL (MySQL Workbench)! ---------------"
+
+        countdown_title "Cài đặt MySQL" || continue
+        sudo apt install mysql-server -y
+
+        countdown_title "Khởi chạy MySQL service" || continue
+        sudo systemctl status mysql.service
+        sudo systemctl start mysql.service
+
+        # Note
+        echo ""
+        print_info "NOTE"
+        print_info "1. Script chỉ chạy được đến đây do setup đằng sau khá phức tạp cần người dùng thao tác theo ý muốn cá nhân!"
+        print_info "2. Vui lòng qua video này: https://youtu.be/zRfI79BHf3k?si=TTDW4O1AbgKxbdpD để tiếp tục!"
+
+        echo ""
+        print_info "--------------- Kết quả cài đặt MySQL (MySQL Workbench)! ---------------"
+        echo "Phiên bản MySQL (MySQL Workbench): $(ibus version)"
+        echo "----------------------------------------------------------------"
+
+        # Thông báo hoàn tất
+        print_info "--------------- Cài đặt MySQL (MySQL Workbench) hoàn tất! ---------------"
+        break      
+
+    elif [[ "$choice" == "6" ]]; then
         print_info "Không có thay đổi nào được thực hiện!"
         exit 0
 
