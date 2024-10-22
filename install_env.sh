@@ -240,7 +240,7 @@ while true; do
 
         echo ""
         print_info "--------------- Kết quả cài đặt MySQL (MySQL Workbench)! ---------------"
-        echo "Phiên bản MySQL (MySQL Workbench): $(ibus version)"
+        echo "Phiên bản MySQL (MySQL Workbench): $(mysql --version)"
         echo "----------------------------------------------------------------"
 
         # Thông báo hoàn tất
