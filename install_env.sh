@@ -60,7 +60,8 @@ while true; do
         echo "1. Cài đặt môi trường airdrop"
         echo "2. Cài đặt môi trường docker"
         echo "3. Cài đặt Git"
-        echo "4. Thoát"
+        echo "4. Cài đặt unikey (ibus-bamboo)"
+        echo "5. Thoát"
     fi
     
     read -p "$(print_info 'Nhập lựa chọn của bạn (1, 2, 3 hoặc 4): ')" choice
@@ -194,6 +195,29 @@ while true; do
         break
 
     elif [[ "$choice" == "4" ]]; then
+        countdown "git" || continue
+
+        print_title "--------------- Bắt đầu cài đặt unikey (ibus-bamboo)! ---------------"
+        
+        # Cài đặt unikey (ibus-bamboo)
+        countdown_title "Cài đặt ibus-bamboo" || continue
+        sudo apt install ibus-unikey
+        ibus restart
+
+        echo ""
+        print_info "--------------- Kết quả cài đặt unikey (ibus-bamboo)! ---------------"
+        echo "Phiên bản ibus-bamboo: $(ibus version)"
+        echo "----------------------------------------------------------------"
+
+        # Thông báo hoàn tất
+        print_info "--------------- Cài đặt unikey (ibus-bamboo) hoàn tất! ---------------"
+
+        # Note
+        print_info "Vào setting của keyboard phần Input Sources -> Add Input Sources... -> Chọn Vietnamese (Unikey)"
+        print_info "Nếu không có hoặc không hoạt động! Vui lòng logout và login lại! Hoặc restart lại máy!"
+        break    
+
+    elif [[ "$choice" == "5" ]]; then
         print_info "Không có thay đổi nào được thực hiện!"
         exit 0
 
